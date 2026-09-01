@@ -1,5 +1,7 @@
 # PPT Guider
 
+[English](README.en.md) | 中文
+
 > "让 AI 做 PPT 的副驾驶，而不是自动驾驶。"
 
 ## 为什么叫 Guider
