@@ -1,8 +1,12 @@
 # PPT Guider
 
+<div align="center">
+
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Model](https://img.shields.io/badge/model-DeepSeek%20Flash-4B6BFB)](https://deepseek.com)
 [![DSH](https://img.shields.io/badge/DSH-Preset-2563eb)](https://github.com/deepseek-ai/deepseek-harness)
+
+</div>
 
 [English](README.en.md) | 中文
 
