@@ -2,41 +2,53 @@
 
 [English](README.en.md) | 中文
 
-<div align="center"><img src="PPT Guider.png" width="400" alt="PPT Guider"></div>
+<div align="center"><img src="PPT Guider.png" width="200" alt="PPT Guider"></div>
+
+<div align="center">
+
+[![DSH Preset](https://img.shields.io/badge/DSH-Preset-2563eb)](https://github.com/chiang21fcb/dsh-ppt-guider)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Model](https://img.shields.io/badge/model-DeepSeek%20Flash-4B6BFB)](https://deepseek.com)
+
+</div>
 
 > "让 AI 做 PPT 的副驾驶，而不是自动驾驶。"
 
-🚀 [为什么叫 Guider](#为什么叫-guider) | 🧪 [我们试过什么](#我们试过什么) | 💡 [为什么发出来](#为什么发出来) | 📋 [工作流](#工作流) | ⚠️ [已知限制](#已知限制) | 📦 [安装](#安装)
+🚀 [为什么叫 Guider](#为什么叫-guider) | 🧪 [我试过什么](#我试过什么) | 💡 [为什么发出来](#为什么发出来) | 📋 [工作流](#工作流) | ⚠️ [已知限制](#已知限制) | 📦 [安装](#安装)
 
 ## 为什么叫 Guider
 
-市面上的 AI PPT 工具都想一键生成，输入主题，吐出一份"成品"。但我们试了一圈后发现，**最好的结果从来不是 AI 独立完成的**。真正好看的 PPT，需要人在关键节点做判断：大纲是否合理，风格是否符合场景，某页的信息密度是否合适。
+市面上的 AI PPT 工具都想一键生成，输入主题，吐出一份"成品"。但我试了一圈后发现，**最好的结果从来不是 AI 独立完成的**。真正好看的 PPT，需要人在关键节点做判断：大纲是否合理，风格是否符合场景，某页的信息密度是否合适。
 
 PPT Guider 的设计哲学是：**AI 负责推进流程、搜集素材、生成设计稿，你负责在每个关卡做决策。** 它像一个专业的设计公司团队，你是创意总监，每一步都经过你的确认，每一步都可以回退。
 
-## 我们试过什么
+## 我试过什么
 
 ### 便利贴（Sticky Note）侧边栏
 
-在 Step 2 大纲确认阶段，我们曾尝试做一个可拖拽排序的便利贴视图，挂靠在 dsh-better-sidebar 的侧边栏里。参考 [ego-browser](https://github.com/Fisfzy/ego-browser) 的 Tab 挂靠模式，通过 `ctx.betterSidebar.registerTab()` 注册。基本实现跑通了，但交互体验（拖拽、点击编辑）在 sidebar 的 sandbox 环境下打磨了很久，最终暂时搁置。
+在 Step 2 大纲确认阶段，我曾尝试做一个可拖拽排序的便利贴视图，挂靠在 dsh-better-sidebar 的侧边栏里。参考 [ego-browser](https://github.com/Fisfzy/ego-browser) 的 Tab 挂靠模式，通过 `ctx.betterSidebar.registerTab()` 注册。基本实现跑通了，但交互体验（拖拽、点击编辑）在 sidebar 的 sandbox 环境下打磨了很久，最终暂时搁置。
 
 ### SVG 中间态
 
 试过让 AI 直接生成 PPTX 格式，但结果不可控，格式错乱，排版崩塌。也试过 HTML 转 PPT，效果同样不稳定。
 
-最后发现 **SVG 作为中间态是最优解**：它既是 AI 擅长生成的格式（文本 + 代码），又是 PowerPoint 可以直接导入的格式（拖入后 Convert to Shape 即可编辑）。更重要的是，SVG 让我们可以做**两层分离**：先出灰度策划稿定结构，再出彩色设计稿做视觉，避免了 AI 生成 PPT 常见的"设计和内容脱节"问题。
+最后发现 **SVG 作为中间态是最优解**：它既是 AI 擅长生成的格式（文本 + 代码），又是 PowerPoint 可以直接导入的格式（拖入后 Convert to Shape 即可编辑）。更重要的是，SVG 让我可以做**两层分离**：先出灰度策划稿定结构，再出彩色设计稿做视觉，避免了 AI 生成 PPT 常见的"设计和内容脱节"问题。
 
-但 SVG 方案也有代价：PowerPoint 的 Convert to Shape 无法 1:1 还原所有 SVG 特性。我们不得不做了硬限制，禁止渐变、filter、defs、opacity。**视觉效果打了折扣，这是目前最大的遗憾。**
+但 SVG 方案也有代价：PowerPoint 的 Convert to Shape 无法 1:1 还原所有 SVG 特性。我不得不做了硬限制，禁止渐变、filter、defs、opacity。**视觉效果打了折扣，这是目前最大的遗憾。**
 
 ## 为什么发出来
 
-这个项目远未完成。我们有很多想法没能实现或放弃了：
+这个项目已经实际跑通，可以稳定产出 PPT。但距离我想象中的样子还有差距。我有很多想法没能实现或放弃了：
 
 - **便利贴交互**：大纲阶段的可视化拖拽编辑，体验还没打磨好就搁置了
 - **SVG 无限制转换**：如果能不限制 filter、渐变、defs，设计稿的质量会提升一大截
 - **原生 PPT 形状生成**：直接生成 PPT 原生形状，跳过 SVG 中间层，理论上可以完美还原，但复杂度极高
 
 发出来是希望**集思广益**。如果你对 SVG 到 PPT 的转写有更好的方案，或者想继续便利贴的交互设计，或者有完全不同的思路，欢迎 Fork，一起探索。
+
+## 模型
+
+日常使用 **DeepSeek Flash** 已经可以稳定产出不错的质量。实测使用带视觉能力的模型效果会更好，例如 **K3** 在策划稿和设计稿阶段表现尤为出色。
 
 ## 工作流
 
