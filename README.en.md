@@ -2,10 +2,8 @@
 
 <div align="center">
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Model](https://img.shields.io/badge/model-DeepSeek%20Flash-4B6BFB)](https://deepseek.com)
-[![DSH](https://img.shields.io/badge/DSH-Preset-2563eb)](https://github.com/deepseek-ai/deepseek-harness)
-[![Author](https://img.shields.io/badge/author-chiang21fcb-orange)](https://github.com/chiang21fcb)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Release](https://img.shields.io/github/v/release/chiang21fcb/dsh-ppt-guider)](https://github.com/chiang21fcb/dsh-ppt-guider/releases)
 
 </div>
 
@@ -116,4 +114,4 @@ Restart DSH, then select "PPT Guider" from the preset list.
 
 ## License
 
-MIT
+MIT © chiang21fcb
