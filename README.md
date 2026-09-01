@@ -4,14 +4,6 @@
 
 <div align="center"><img src="PPT Guider.png" width="200" alt="PPT Guider"></div>
 
-<div align="center">
-
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Release](https://img.shields.io/github/v/release/chiang21fcb/dsh-ppt-guider)](https://github.com/chiang21fcb/dsh-ppt-guider/releases)
-[![DSH](https://img.shields.io/badge/DSH-Preset-2563eb)](https://github.com/deepseek-ai/deepseek-harness)
-
-</div>
-
 > "让 AI 做 PPT 的副驾驶，而不是自动驾驶。"
 
 PPT Guider 是一个 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（DSH）的 Agent 预设。它运行在 DSH 环境中，通过 Agent 对话驱动 PPT 制作全流程。你需要安装 DSH 并启动 Web 服务后才能使用。

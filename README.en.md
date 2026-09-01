@@ -4,14 +4,6 @@ English | [中文](README.md)
 
 <div align="center"><img src="PPT Guider.png" width="200" alt="PPT Guider"></div>
 
-<div align="center">
-
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Release](https://img.shields.io/github/v/release/chiang21fcb/dsh-ppt-guider)](https://github.com/chiang21fcb/dsh-ppt-guider/releases)
-[![DSH](https://img.shields.io/badge/DSH-Preset-2563eb)](https://github.com/deepseek-ai/deepseek-harness)
-
-</div>
-
 > "AI is the co-pilot, not the autopilot."
 
 PPT Guider is an Agent preset for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (DSH). It runs inside the DSH environment, driving the full PPT workflow through Agent conversations. You need to install DSH and start the web service before using it.
