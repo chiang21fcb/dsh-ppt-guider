@@ -22,11 +22,7 @@ PPT Guider's philosophy: **AI drives the workflow, gathers materials, and genera
 # Install the preset
 git clone https://github.com/chiang21fcb/dsh-ppt-guider.git ~/.dsh/.agent-presets/ppt-guider/
 
-# Restart DSH, select "PPT Guider" preset
-# Then tell the Agent:
-#   "Make me a PPT about the AI industry, about 10 pages, business style"
-# Or:
-#   "Here's our product doc [link], turn it into a PPT"
+# Restart DSH, select "PPT Guider" preset, and tell the Agent what kind of PPT you want.
 ```
 
 The Agent will follow the six-step workflow, waiting for your confirmation at each stage.

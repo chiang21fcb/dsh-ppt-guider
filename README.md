@@ -22,11 +22,7 @@ PPT Guider 的设计哲学是：**AI 负责推进流程、搜集素材、生成�
 # 安装预设
 git clone https://github.com/chiang21fcb/dsh-ppt-guider.git ~/.dsh/.agent-presets/ppt-guider/
 
-# 重启 DSH，选择 "PPT Guider" 预设
-# 然后告诉 Agent：
-#   "帮我做一份关于 AI 行业的 PPT，10 页左右，商务风格"
-# 或者：
-#   "这是我们的产品文档 [飞书链接]，帮我做成 PPT"
+# 重启 DSH，选择 "PPT Guider" 预设，告诉 Agent 你想做什么样的 PPT 即可。
 ```
 
 Agent 会按六步工作流推进，每一步都等你确认。
