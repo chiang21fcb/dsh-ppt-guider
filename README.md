@@ -2,9 +2,11 @@
 
 [English](README.en.md) | 中文
 
-<img src="PPT Guider.png" width="600" alt="PPT Guider">
+<div align="center"><img src="PPT Guider.png" width="400" alt="PPT Guider"></div>
 
 > "让 AI 做 PPT 的副驾驶，而不是自动驾驶。"
+
+🚀 [为什么叫 Guider](#为什么叫-guider) | 🧪 [我们试过什么](#我们试过什么) | 💡 [为什么发出来](#为什么发出来) | 📋 [工作流](#工作流) | ⚠️ [已知限制](#已知限制) | 📦 [安装](#安装)
 
 ## 为什么叫 Guider
 

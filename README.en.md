@@ -2,9 +2,11 @@
 
 English | [中文](README.md)
 
-<img src="PPT Guider.png" width="600" alt="PPT Guider">
+<div align="center"><img src="PPT Guider.png" width="400" alt="PPT Guider"></div>
 
 > "AI is the co-pilot, not the autopilot."
+
+🚀 [Why Guider](#why-guider) | 🧪 [What We Tried](#what-we-tried) | 💡 [Why We're Sharing](#why-were-sharing) | 📋 [Workflow](#workflow) | ⚠️ [Known Limitations](#known-limitations) | 📦 [Installation](#installation)
 
 ## Why Guider
 
