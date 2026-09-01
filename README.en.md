@@ -16,16 +16,13 @@ Most AI PPT tools promise one-click generation: input a topic, get a "finished" 
 
 PPT Guider's philosophy: **AI drives the workflow, gathers materials, and generates design drafts. You make the decisions at every checkpoint.** It works like a professional design firm, where you are the creative director. Every step requires your confirmation, and every step can be rolled back.
 
-## Quick Start
+## Installation
 
 ```bash
-# Install the preset
 git clone https://github.com/chiang21fcb/dsh-ppt-guider.git ~/.dsh/.agent-presets/ppt-guider/
-
-# Restart DSH, select "PPT Guider" preset, and tell the Agent what kind of PPT you want.
 ```
 
-The Agent will follow the six-step workflow, waiting for your confirmation at each stage.
+Restart DSH, select "PPT Guider" preset, and tell the Agent what kind of PPT you want. The Agent will follow the six-step workflow, waiting for your confirmation at each stage.
 
 ## What I Tried
 
@@ -92,14 +89,6 @@ When PowerPoint imports SVGs containing Chinese text, the file MUST begin with B
 ### Convert to Shape is Lossy
 
 I disabled `<filter>`, `<defs>`, gradients, `opacity`, and CSS `<style>`, using solid colors and offset dark rectangles to simulate shadows instead. **If you have a better SVG-to-PPT conversion approach, this is where help is most needed.**
-
-## Installation
-
-```bash
-git clone https://github.com/chiang21fcb/dsh-ppt-guider.git ~/.dsh/.agent-presets/ppt-guider/
-```
-
-Restart DSH, then select "PPT Guider" from the preset list.
 
 ## License
 

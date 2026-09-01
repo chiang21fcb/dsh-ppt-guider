@@ -16,16 +16,13 @@ PPT Guider 是一个 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-
 
 PPT Guider 的设计哲学是：**AI 负责推进流程、搜集素材、生成设计稿，你负责在每个关卡做决策。** 它像一个专业的设计公司团队，你是创意总监，每一步都经过你的确认，每一步都可以回退。
 
-## 快速开始
+## 安装
 
 ```bash
-# 安装预设
 git clone https://github.com/chiang21fcb/dsh-ppt-guider.git ~/.dsh/.agent-presets/ppt-guider/
-
-# 重启 DSH，选择 "PPT Guider" 预设，告诉 Agent 你想做什么样的 PPT 即可。
 ```
 
-Agent 会按六步工作流推进，每一步都等你确认。
+重启 DSH，选择 "PPT Guider" 预设，告诉 Agent 你想做什么样的 PPT 即可。Agent 会按六步工作流推进，每一步都等你确认。
 
 ## 我试过什么
 
@@ -91,14 +88,6 @@ PowerPoint 导入含中文的 SVG 时，文件必须以 BOM（EF BB BF）开头�
 ### Convert to Shape 不完全
 
 禁用了 `<filter>`、`<defs>`、渐变、`opacity`、CSS `<style>`，用纯色 + 深色矩形模拟阴影代替。**如果你有更好的 SVG 到 PPT 转写方案，这是最需要帮助的地方。**
-
-## 安装
-
-```bash
-git clone https://github.com/chiang21fcb/dsh-ppt-guider.git ~/.dsh/.agent-presets/ppt-guider/
-```
-
-重启 DSH，选择 "PPT Guider" 预设。
 
 ## 协议
 
