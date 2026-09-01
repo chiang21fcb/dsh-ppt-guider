@@ -4,6 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Release](https://img.shields.io/github/v/release/chiang21fcb/dsh-ppt-guider)](https://github.com/chiang21fcb/dsh-ppt-guider/releases)
+[![DSH](https://img.shields.io/badge/DSH-Preset-2563eb)](https://github.com/deepseek-ai/deepseek-harness)
 
 </div>
 
