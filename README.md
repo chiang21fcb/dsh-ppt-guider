@@ -1,16 +1,12 @@
 # PPT Guider
 
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Model](https://img.shields.io/badge/model-DeepSeek%20Flash-4B6BFB)](https://deepseek.com)
+[![DSH](https://img.shields.io/badge/DSH-Preset-2563eb)](https://github.com/deepseek-ai/deepseek-harness)
+
 [English](README.en.md) | 中文
 
 <div align="center"><img src="PPT Guider.png" width="200" alt="PPT Guider"></div>
-
-<div align="center">
-
-[![DSH Preset](https://img.shields.io/badge/DSH-Preset-2563eb)](https://github.com/chiang21fcb/dsh-ppt-guider)
-[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-[![Model](https://img.shields.io/badge/model-DeepSeek%20Flash-4B6BFB)](https://deepseek.com)
-
-</div>
 
 > "让 AI 做 PPT 的副驾驶，而不是自动驾驶。"
 
@@ -21,6 +17,21 @@
 市面上的 AI PPT 工具都想一键生成，输入主题，吐出一份"成品"。但我试了一圈后发现，**最好的结果从来不是 AI 独立完成的**。真正好看的 PPT，需要人在关键节点做判断：大纲是否合理，风格是否符合场景，某页的信息密度是否合适。
 
 PPT Guider 的设计哲学是：**AI 负责推进流程、搜集素材、生成设计稿，你负责在每个关卡做决策。** 它像一个专业的设计公司团队，你是创意总监，每一步都经过你的确认，每一步都可以回退。
+
+## 快速开始
+
+```bash
+# 安装预设
+git clone https://github.com/chiang21fcb/dsh-ppt-guider.git ~/.dsh/.agent-presets/ppt-guider/
+
+# 重启 DSH，选择 "PPT Guider" 预设
+# 然后告诉 Agent：
+#   "帮我做一份关于 AI 行业的 PPT，10 页左右，商务风格"
+# 或者：
+#   "这是我们的产品文档 [飞书链接]，帮我做成 PPT"
+```
+
+Agent 会按六步工作流推进，每一步都等你确认。
 
 ## 我试过什么
 

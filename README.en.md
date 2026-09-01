@@ -1,16 +1,12 @@
 # PPT Guider
 
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Model](https://img.shields.io/badge/model-DeepSeek%20Flash-4B6BFB)](https://deepseek.com)
+[![DSH](https://img.shields.io/badge/DSH-Preset-2563eb)](https://github.com/deepseek-ai/deepseek-harness)
+
 English | [中文](README.md)
 
 <div align="center"><img src="PPT Guider.png" width="200" alt="PPT Guider"></div>
-
-<div align="center">
-
-[![DSH Preset](https://img.shields.io/badge/DSH-Preset-2563eb)](https://github.com/chiang21fcb/dsh-ppt-guider)
-[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-[![Model](https://img.shields.io/badge/model-DeepSeek%20Flash-4B6BFB)](https://deepseek.com)
-
-</div>
 
 > "AI is the co-pilot, not the autopilot."
 
@@ -21,6 +17,21 @@ English | [中文](README.md)
 Most AI PPT tools promise one-click generation: input a topic, get a "finished" deck. But after trying many, I found that **the best results are never produced by AI alone**. A truly good presentation needs human judgment at key moments: is the outline logical, does the style fit the occasion, is each page too dense or too sparse.
 
 PPT Guider's philosophy: **AI drives the workflow, gathers materials, and generates design drafts. You make the decisions at every checkpoint.** It works like a professional design firm, where you are the creative director. Every step requires your confirmation, and every step can be rolled back.
+
+## Quick Start
+
+```bash
+# Install the preset
+git clone https://github.com/chiang21fcb/dsh-ppt-guider.git ~/.dsh/.agent-presets/ppt-guider/
+
+# Restart DSH, select "PPT Guider" preset
+# Then tell the Agent:
+#   "Make me a PPT about the AI industry, about 10 pages, business style"
+# Or:
+#   "Here's our product doc [link], turn it into a PPT"
+```
+
+The Agent will follow the six-step workflow, waiting for your confirmation at each stage.
 
 ## What I Tried
 
