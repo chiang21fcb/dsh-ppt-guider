@@ -1,5 +1,9 @@
 # PPT Guider
 
+[English](README.en.md) | 中文
+
+<div align="center"><img src="PPT Guider.png" width="200" alt="PPT Guider"></div>
+
 <div align="center">
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -7,10 +11,6 @@
 [![DSH](https://img.shields.io/badge/DSH-Preset-2563eb)](https://github.com/deepseek-ai/deepseek-harness)
 
 </div>
-
-[English](README.en.md) | 中文
-
-<div align="center"><img src="PPT Guider.png" width="200" alt="PPT Guider"></div>
 
 > "让 AI 做 PPT 的副驾驶，而不是自动驾驶。"
 
