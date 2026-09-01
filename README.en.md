@@ -2,6 +2,8 @@
 
 English | [中文](README.md)
 
+<img src="PPT Guider.png" width="600" alt="PPT Guider">
+
 > "AI is the co-pilot, not the autopilot."
 
 ## Why Guider
