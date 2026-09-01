@@ -1,47 +1,55 @@
 # PPT Guider
 
-顶级演示文稿智能体预设（DSH Agent Preset），模拟专业 PPT 设计公司的完整工作流。
+> **"让 AI 做 PPT 的副驾驶，而不是自动驾驶。"**
 
-## 特色
+## 为什么叫 Guider
 
-### 1. 六步专家工作流
+市面上的 AI PPT 工具都想一键生成——输入主题，吐出一份"成品"。但我们试了一圈后发现，**最好的结果从来不是 AI 独立完成的**。真正好看的 PPT，需要人在关键节点做判断：大纲是否合理？风格是否符合场景？某页的信息密度是否合适？
+
+PPT Guider 的设计哲学是：**AI 负责推进流程、搜集素材、生成设计稿，你负责在每个关卡做决策。** 它像一个专业的设计公司团队，你是创意总监——每一步都经过你的确认，每一步都可以回退。
+
+## 我们试过什么
+
+### 便利贴（Sticky Note）侧边栏
+
+在 Step 2 大纲确认阶段，我们曾尝试做一个可拖拽排序的便利贴视图，挂靠在 dsh-better-sidebar 的侧边栏里。参考 [ego-browser](https://github.com/Fisfzy/ego-browser) 的 Tab 挂靠模式，通过 `ctx.betterSidebar.registerTab()` 注册。基本实现跑通了，但交互体验（拖拽、点击编辑）在 sidebar 的 sandbox 环境下打磨了很久，最终暂时搁置。
+
+### SVG 中间态
+
+试过让 AI 直接生成 PPTX 格式，但结果不可控——格式错乱、排版崩塌。也试过 HTML 转 PPT，效果同样不稳定。
+
+最后发现 **SVG 作为中间态是最优解**：它既是 AI 擅长生成的格式（文本 + 代码），又是 PowerPoint 可以直接导入的格式（拖入后 Convert to Shape 即可编辑）。更重要的是，SVG 让我们可以做**两层分离**——先出灰度策划稿（定结构），再出彩色设计稿（做视觉），避免了 AI 生成 PPT 常见的"设计和内容脱节"问题。
+
+但 SVG 方案也有代价：PowerPoint 的 Convert to Shape 无法 1:1 还原所有 SVG 特性。我们不得不做了硬限制——禁止渐变、filter、defs、opacity。**视觉效果打了折扣，这是目前最大的遗憾。**
+
+## 为什么发出来
+
+这个项目远未完成。我们有很多想法没能实现或放弃了：
+
+- **便利贴交互**：大纲阶段的可视化拖拽编辑，体验还没打磨好就搁置了
+- **SVG 无限制转换**：如果能不限制 filter/渐变/defs，设计稿的质量会提升一大截
+- **原生 PPT 形状生成**：直接生成 PPT 原生形状（跳过 SVG 中间层），理论上可以完美还原，但复杂度极高
+
+发出来是希望**集思广益**。如果你对 SVG→PPT 的转写有更好的方案，或者想继续便利贴的交互设计，或者有完全不同的思路——欢迎 Fork，一起探索。
+
+## 工作流
 
 ```
-资料收集 → 大纲策划 → 补充确认 → 策划稿 → 设计稿 → 自动导入 PPTX
+资料收集 → 大纲策划 → 补充确认 → 策划稿（灰度 SVG）→ 设计稿（彩色 SVG）→ 自动导入 PPTX
 ```
 
-每一步都有确认关卡，用户可随时回退。
+每一步都有确认关卡：
 
-### 2. 双路径触发
+| 步骤 | 做什么 | 你的角色 |
+|------|--------|----------|
+| 资料收集 | 读取你给的材料 + 联网搜索补充 | 给主题或给材料 |
+| 大纲策划 | 金字塔原理生成结构化大纲 | 全部认可 or 逐页审核 |
+| 补充确认 | 是否有遗漏的内容 | 补充 or 跳过 |
+| 策划稿 | 灰度 SVG 线框图，确定版式 | 确认结构 |
+| 设计稿 | Bento Grid 彩色 SVG | 审核视觉效果 |
+| 导入 PPTX | 自动插入 PowerPoint | 手动 Convert to Shape |
 
-- **只给主题** → 自动联网调研 + 逐页搜索补充资料
-- **给了资料**（飞书链接 / 本地文件）→ 先读资料，再联网补充，轻量确认
-
-### 3. SVG 中间态（核心创新）
-
-| 阶段 | 输出 | 作用 |
-|------|------|------|
-| Step 4 策划稿 | 灰度 SVG 线框图 | 结构蓝图，先定版式 |
-| Step 5 设计稿 | 彩色 Bento Grid SVG | 最终视觉效果 |
-
-**两层分离**确保结构先行、设计在后，避免 AI 生成 PPT 常见的"设计偏离策划 40%+"问题。
-
-### 4. PPT-safe SVG 约束
-
-设计稿可直接拖入 PowerPoint 2016+，`Convert to Shape` 后保持样式一致。
-
-- ❌ 禁止 `<filter>`、`<defs>`、渐变、CSS `<style>`
-- ✅ 纯色填充 + 深色矩形模拟阴影 + 所有样式内联
-
-### 5. 自动导入 PPTX
-
-Step 6 通过 PowerShell COM 将全部 SVG 按序插入 PPTX 文件。用户只需手动 `右键 → Convert to Shape` 即可编辑。
-
-### 6. 金字塔大纲 + 逐页审核
-
-Step 2 用金字塔原理生成结构化大纲，用户可选择"全部认可"或逐页审核编辑。
-
-## 风格配色
+## 风格
 
 | 风格 | 背景 | 主色 | 辅助色 | 强调色 |
 |------|------|------|--------|--------|
@@ -53,38 +61,13 @@ Step 2 用金字塔原理生成结构化大纲，用户可选择"全部认可"�
 
 ## 已知限制
 
-### SVG → PPT Convert to Shape 不完全
+### SVG 编码：BOM 是硬性要求
 
-PowerPoint 的 `Convert to Shape` 无法 1:1 还原所有 SVG 特性。
-我们做了硬限制（禁用渐变/阴影等），但视觉效果仍有妥协。
+PowerPoint 导入含中文的 SVG 时，文件必须以 BOM（EF BB BF）开头，否则整页渲染失败。这是踩了 15 页里挂了 1 页的坑才发现的。
 
-**欢迎 Fork 贡献更好的 SVG→PPT 转写方案！** 可行的方向：
-- 直接生成原生 PPT 形状（跳过 SVG 中间层）
-- 改进 SVG 到 PPT 的映射规则
-- 利用 PPT 内置渐变/阴影补全转换后的样式
+### Convert to Shape 不完全
 
-### BOM 编码（血泪教训）
-
-PowerPoint 导入含中文的 SVG 时，**BOM (EF BB BF) 是硬性要求**，缺了整页渲染失败。
-
-- ❌ 不要用 `write` 工具写中文 SVG（不带 BOM）
-- ❌ 不要用 `Set-Content`（默认 ANSI，中文乱码）
-- ✅ 只用 `[System.IO.File]::WriteAllText(path, content, [System.Text.Encoding]::UTF8)`
-- ✅ 写完后验证：`ReadAllBytes` 前 3 字节 = `EF BB BF`
-
-### PowerPoint 不支持 opacity
-
-使用 `opacity` 属性的 SVG 导入 PPT 后会丢失透明效果，禁用。
-
-## 未竟尝试
-
-### 便利贴（Sticky Note）侧边栏 Tab
-
-曾尝试在 Step 2 大纲确认后加入可拖拽排序的便利贴视图，
-通过 `ctx.betterSidebar.registerTab()` 挂靠到 dsh-better-sidebar 侧边栏。
-基本实现可行但交互体验待打磨，代码在 `pastk-1` 动态插件中保留。
-
-参考实现：[ego-browser](https://github.com/Fisfzy/ego-browser) 的侧边栏 Tab 挂靠模式。
+禁用了 `<filter>`、`<defs>`、渐变、`opacity`、CSS `<style>`——用纯色 + 深色矩形模拟阴影代替。**如果你有更好的 SVG→PPT 转写方案，这是最需要帮助的地方。**
 
 ## 安装
 
@@ -92,13 +75,7 @@ PowerPoint 导入含中文的 SVG 时，**BOM (EF BB BF) 是硬性要求**，缺
 git clone https://github.com/<user>/dsh-ppt-guider.git ~/.dsh/.agent-presets/ppt-guider/
 ```
 
-重启 DSH，在预设列表中选择 "PPT Guider"。
-
-## 使用
-
-1. 选择 "PPT Guider" 预设
-2. 输入主题或提供资料（飞书链接 / 本地文件）
-3. 跟随 Agent 的六步工作流完成 PPT
+重启 DSH，选择 "PPT Guider" 预设。
 
 ## 协议
 
