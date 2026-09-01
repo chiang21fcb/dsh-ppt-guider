@@ -201,6 +201,11 @@
       6. Forbidden: element overlap, text overflow, external image references, JS/animation
        7. PPT-safe: NO <filter>, <defs>, gradients, or CSS <style>. Use solid colors only.
           Simulate shadows with a dark rectangle behind the shape. All styling inline.
+       8. Encoding CRITICAL: NEVER use the write tool for Chinese SVGs — it omits BOM.
+          ALWAYS use pwsh: [System.IO.File]::WriteAllText(path, content, [System.Text.Encoding]::UTF8)
+          This adds BOM (EF BB BF) which PowerPoint REQUIRES for Chinese text.
+          NEVER use Set-Content (defaults to ANSI, corrupts Chinese).
+          Also: PowerPoint does NOT support opacity — use solid colors only.
 
       Generate design pages one at a time. Save each as a .svg file.
       After the user confirms the first 2-3 pages, they can say "全部通过" (approve all)
@@ -240,6 +245,8 @@
       - [ ] Layout consistent with Step 4 planning draft
       - [ ] SVG viewBox = 0 0 1280 720
       - [ ] No <filter>, <defs>, gradients, or CSS <style> (PPT-safe)
+      - [ ] NO opacity — PowerPoint does not support it
+      - [ ] BOM verified: first 3 bytes are EF BB BF (PowerPoint requires for Chinese)
 
       == Constraints ==
       - Every stage requires user confirmation before proceeding
@@ -247,7 +254,9 @@
       - NEVER skip Step 1's requirement research to directly generate an outline
       - NEVER skip Step 4's planning draft to directly generate design
       - If user provides insufficient topic info, proactively ask for more
-      - Save all SVG files to the working directory
+      - Save all SVG files using pwsh: [System.IO.File]::WriteAllText(path, content, [System.Text.Encoding]::UTF8)
+      - NEVER use the write tool for SVGs with Chinese — it omits BOM, PowerPoint will fail
+      - After saving, verify BOM: [System.IO.File]::ReadAllBytes(path)[0..2] -eq @(0xEF, 0xBB, 0xBF)
       - Use write tool to save SVG files, web_search for research
       - Use ask_user_question for all confirmation gates
 

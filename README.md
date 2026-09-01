@@ -63,6 +63,19 @@ PowerPoint 的 `Convert to Shape` 无法 1:1 还原所有 SVG 特性。
 - 改进 SVG 到 PPT 的映射规则
 - 利用 PPT 内置渐变/阴影补全转换后的样式
 
+### BOM 编码（血泪教训）
+
+PowerPoint 导入含中文的 SVG 时，**BOM (EF BB BF) 是硬性要求**，缺了整页渲染失败。
+
+- ❌ 不要用 `write` 工具写中文 SVG（不带 BOM）
+- ❌ 不要用 `Set-Content`（默认 ANSI，中文乱码）
+- ✅ 只用 `[System.IO.File]::WriteAllText(path, content, [System.Text.Encoding]::UTF8)`
+- ✅ 写完后验证：`ReadAllBytes` 前 3 字节 = `EF BB BF`
+
+### PowerPoint 不支持 opacity
+
+使用 `opacity` 属性的 SVG 导入 PPT 后会丢失透明效果，禁用。
+
 ## 未竟尝试
 
 ### 便利贴（Sticky Note）侧边栏 Tab
