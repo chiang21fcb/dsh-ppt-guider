@@ -1,6 +1,6 @@
-# PPT Agent Skill — 提示词模板与设计资源
+# PPT Guider Skill — 提示词模板与设计资源
 
-本 skill 提供 PPT Agent 五步工作流中使用的核心提示词模板和设计规范。
+本 skill 提供 PPT Guider 六步工作流中使用的核心提示词模板和设计规范。
 
 ## 何时加载
 
